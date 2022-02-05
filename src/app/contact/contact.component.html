@@ -1,0 +1,10 @@
+<div class="">
+  <app-contact-header></app-contact-header>
+  <div class="border-t-2 border-gray-300 overflow-y-auto" style="max-height: calc(100vh - 63px)">
+    <app-contact-item 
+      *ngFor="let item of contacts; let i = index" 
+      [selected]="i === current" 
+      (selectedChange)="setCurrent(i)">
+    </app-contact-item>
+  </div>
+</div>
