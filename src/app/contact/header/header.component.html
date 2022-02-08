@@ -1,0 +1,28 @@
+<div class="h-16 p-2 flex flex-row justify-between items-center">
+    <button *ngIf="show_search" (click)="show_search = false" mat-icon-button class="mx-2 text-gray-500">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <img
+        *ngIf="!show_search"
+        class="h-12 w-12 rounded-full border border-pink-500"
+        src="/assets/profile.jpg"
+        alt="Profile"
+    />
+    <input
+        #custom_input_elt
+        [(ngModel)]="search_value"
+        class="text-base text-gray-700 p-2 focus:outline-none {{ show_search ? 'w-full' : 'w-0' }}"
+        placeholder="Search contact.."
+    />
+    <div *ngIf="!show_search" class="px-4 text-base text-gray-600 w-full">{{user.first_name + " " + user.last_name}}</div>
+    <button *ngIf="!show_search" (click)="showSearch()" mat-icon-button class="mx-2 text-gray-500">
+        <mat-icon>search</mat-icon>
+    </button>
+    <button *ngIf="!show_search" [matMenuTriggerFor]="menu" mat-icon-button class="mx-2 text-gray-500">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</div>
+<mat-menu #menu="matMenu">
+    <button (click)="openContacts()" mat-menu-item>Contacts</button>
+    <button mat-menu-item>Profile</button>
+</mat-menu>

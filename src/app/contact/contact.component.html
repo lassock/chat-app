@@ -1,10 +1,12 @@
 <div class="">
-  <app-contact-header></app-contact-header>
-  <div class="border-t-2 border-gray-300 overflow-y-auto" style="max-height: calc(100vh - 63px)">
-    <app-contact-item 
-      *ngFor="let item of contacts; let i = index" 
-      [selected]="i === current" 
-      (selectedChange)="setCurrent(i)">
-    </app-contact-item>
-  </div>
+    <app-contact-header (newConversation)="initNewConversation($event)"></app-contact-header>
+    <div class="border-t-2 border-gray-300 overflow-y-auto" style="max-height: calc(100vh - 63px)">
+        <app-contact-item
+            *ngFor="let item of contacts"
+            [conversation]="item"
+            [selected]="item?._id === selectedConversation?._id"
+            (selectedChange)="setCurrent(item)"
+        >
+        </app-contact-item>
+    </div>
 </div>

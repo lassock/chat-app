@@ -1,0 +1,33 @@
+<!-- For recieved messages. -->
+<div *ngIf="is_recieved" class="flex flex-col justify-start py-2 pl-7 pr-20">
+    <div style="z-index: 0" class="relative mr-auto">
+        <div style="z-index: -1" class="absolute bottom-0 -left-3 text-gray-200 rounded-lg">
+            <svg width="51" height="21" viewBox="0 0 51 21" fill="none">
+                <path
+                    d="M24.714 0.8332C25.4101 0.334971 26.346 0.334971 27.0421 0.833199L50.1509 17.3737C51.7323 18.5055 50.9315 21 48.9869 21H2.76924C0.824561 21 0.0238247 18.5055 1.60517 17.3737L24.714 0.8332Z"
+                    fill="currentColor"
+                />
+            </svg>
+        </div>
+        <span style="z-index: 1; min-width: 100px;" class="block bg-gray-200 px-3 py-2 rounded-md">{{ message.content }}</span>
+    </div>
+    <div class="text-gray-400 text-xs pt-1">{{ date }}</div>
+</div>
+
+<!-- For send messages. -->
+<div *ngIf="!is_recieved" class="w-full flex flex-col justify-start py-2 pr-7 pl-20">
+    <div style="z-index: 0" class="relative ml-auto">
+        <div style="z-index: -1" class="absolute bottom-0 -right-3 text-pink-400 rounded-lg">
+            <svg width="51" height="21" viewBox="0 0 51 21" fill="none">
+                <path
+                    d="M24.714 0.8332C25.4101 0.334971 26.346 0.334971 27.0421 0.833199L50.1509 17.3737C51.7323 18.5055 50.9315 21 48.9869 21H2.76924C0.824561 21 0.0238247 18.5055 1.60517 17.3737L24.714 0.8332Z"
+                    fill="currentColor"
+                />
+            </svg>
+        </div>
+        <span style="z-index: 1; min-width: 100px;" class="block bg-pink-400 text-white px-3 py-2 rounded-md"
+            >{{ message.content }}</span
+        >
+    </div>
+    <div class="text-gray-400 ml-auto text-xs pt-1">{{ date }}</div>
+</div>

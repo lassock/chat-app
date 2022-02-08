@@ -1,15 +1,28 @@
-<div class="">
-  <app-conversation-header></app-conversation-header>
-  <div class="border-t-2 border-gray-300" style="max-height: calc(100vh - 63px)">
-    <div #conversation_content class="overflow-y-auto" style="scroll-behavior: smooth; height: calc(100vh - 136px)">
-      <ng-container *ngFor="let item of messages">
-        <app-message [message]="item"></app-message>
-      </ng-container>
+<div class="{{ selectedConversation?.concern ? 'w-full h-full' : 'h-0 w-0 overflow-hidden' }}">
+    <app-conversation-header (back)="back.emit()" [conversation]="selectedConversation"></app-conversation-header>
+    <div class="border-t-2 border-gray-300" style="max-height: calc(100vh - 63px)">
+        <div #conversation_content class="overflow-y-auto" style="scroll-behavior: smooth; height: calc(100vh - 136px)">
+            <ng-container *ngFor="let item of messages">
+                <app-message [message]="item"></app-message>
+            </ng-container>
+        </div>
+        <div class="flex justify-center items-center w-full border p-2">
+            <input
+                #input_message
+                type="text"
+                class="w-full p-3 text-lg focus:outline-none focus:ring-0 focus:border-0"
+                [(ngModel)]="message"
+                placeholder="Enter your messge..."
+            />
+            <!-- <button mat-icon-button class="text-lg text-gray-500"><mat-icon>image</mat-icon></button> -->
+            <button (click)="sendMessage()" [disabled]="message === ''" mat-icon-button class="text-lg text-gray-500">
+                <mat-icon>send</mat-icon>
+            </button>
+        </div>
     </div>
-    <div class="flex justify-center items-center w-full border p-2">
-      <input #input_message type="text" class="w-full p-3 text-lg" [(ngModel)]="message" placeholder="Enter your messge..."> 
-      <!-- <button mat-icon-button class="text-lg text-gray-500"><mat-icon>image</mat-icon></button> -->
-      <button (click)="sendMessage()" [disabled]="message === ''" mat-icon-button class="text-lg text-gray-500"><mat-icon>send</mat-icon></button>
+</div>
+<div class="{{ selectedConversation?.concern ? 'invisible w-0 h-0' : 'w-full h-full' }}">
+    <div class="flex flex-col justify-center items-center w-full h-full">
+        <h1 class="text-pink-300 font-medium">Select a conversation or contact to make discussions!</h1>
     </div>
-  </div>
 </div>

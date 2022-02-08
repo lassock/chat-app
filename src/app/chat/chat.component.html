@@ -1,0 +1,28 @@
+<div class="h-screen w-screen overflow-hidden hidden-tab-header md:hidden">
+    <mat-tab-group [(selectedIndex)]="tab_index">
+        <mat-tab>
+            <div class="h-screen w-screen">
+                <app-contact
+                    [selectedConversation]="selectedConversation"
+                    (selectedConversationChange)="onSelectedConversationChange($event)"
+                ></app-contact>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <div class="h-screen w-screen">
+                <app-conversation [selectedConversation]="selectedConversation" (back)="onBack()"></app-conversation>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<div class="hidden md:grid grid-cols-12 h-screen w-screen">
+    <div class="col-span-12 md:col-span-4 border-r-2 border-gray-300">
+        <app-contact
+            [selectedConversation]="selectedConversation"
+            (selectedConversationChange)="onSelectedConversationChange($event)"
+        ></app-contact>
+    </div>
+    <div class="col-span-12 md:col-span-8 md:col-start-5">
+        <app-conversation [selectedConversation]="selectedConversation" (back)="onBack()"></app-conversation>
+    </div>
+</div>
