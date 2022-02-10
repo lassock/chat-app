@@ -1,3 +1,4 @@
+import { LocalStorageService } from './local-storage.service';
 import { Contact } from './../model/Contact';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,11 +11,19 @@ export class ContactService {
     headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
+    user: Contact = { first_name: '', last_name: '', username: '', password: '', token: '' };
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private local: LocalStorageService) {
+        this.user = JSON.parse(this.local.get('user') || '{}');
+    }
 
     getContacts() {
-        return this.http.get<any[]>(this.uri, { headers: this.headers });
+        const token = this.user.token;
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token,
+        });
+        return this.http.get<any[]>(this.uri, { headers: headers });
     }
 
     addContact(contact: Contact) {

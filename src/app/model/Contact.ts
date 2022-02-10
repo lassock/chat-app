@@ -4,4 +4,5 @@ export interface Contact {
     last_name: string;
     username: string;
     password: string;
+    token?: String;
 }

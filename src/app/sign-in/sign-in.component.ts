@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
                 },
                 error: (error) => {
                     console.error(error);
-                    this.message = error.message;
+                    this.message = 'Your username or password is not correct.';
                 },
             });
         }
